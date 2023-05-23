@@ -1,0 +1,10 @@
+{
+    "/user_api": {
+    "target": "https://raintonic.com/careers/es5_dataset.json",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+        "^/user_api": ""
+      }
+    }
+}

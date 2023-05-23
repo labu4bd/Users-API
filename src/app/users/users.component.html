@@ -1,0 +1,51 @@
+<p>users!</p>
+<div class="search">
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td colspan="2">
+                <mat-form-field class="example-form-field">
+                    <mat-label>First name</mat-label>
+                    <input matInput type="text" [(ngModel)]="userName">
+                    <button *ngIf="userName" matSuffix mat-icon-button aria-label="Clear" (click)="getUsers()">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </td>
+        </tr> 
+        <tr>
+            <td>
+                <button mat-raised-button color="primary" (click)="search(userName)">Search</button>
+            </td>
+            <td>
+                <button mat-raised-button color="primary" (click)="showFavoriteUsers()">Favorite Users</button>
+            </td>
+        </tr> 
+    </table>
+</div>
+
+<ul *ngIf="!showFavUsers" class="users">
+    <li *ngFor="let user of users; let i = index">
+      <span class="badge">{{ user.id }}</span>
+      <span class="name">{{user.first_name}}</span>
+      <ng-template>
+        <input #userInput type="text" class="name" [value]="user.first_name"/>
+      </ng-template>
+   
+      <button mat-mini-fab matTooltip="Primary" (click)="addFavoriteUser(user.id)" class="feb" color="primary" aria-label="Example mini fab with a heart icon">
+        <mat-icon style="display: table;">favorite</mat-icon>
+      </button>
+    </li>
+</ul>
+<ul *ngIf="showFavUsers" class="users">
+    <li *ngFor="let user of favoriteUsers; let i = index">
+      <span class="badge">{{ user.id }}</span>
+      <span class="name">{{user.first_name}}</span>
+      <ng-template>
+        <input #userInput type="text" class="name" [value]="user.first_name"/>
+      </ng-template>
+   
+      <button mat-mini-fab matTooltip="Primary"  class="feb" color="primary" aria-label="Example mini fab with a heart icon">
+        <mat-icon style="display: table;">favorite</mat-icon>
+      </button>
+    </li>
+</ul>
